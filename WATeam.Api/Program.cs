@@ -21,7 +21,7 @@ if (app.Environment.IsDevelopment())
 // app.UseHttpsRedirection();
 app.MapGet("/", () => "Hello World!");
 
-app.MapGet("webhook", (
+app.MapGet("/webhook", (
     [FromQuery(Name = "hub.mode")] string hubMode,
     [FromQuery(Name = "hub.challenge")] int hubChallenge,
     [FromQuery(Name = "hub.verify_token")] string hubVerifyToken) =>
@@ -31,7 +31,7 @@ app.MapGet("webhook", (
 .WithName("WebhookVerify")
 .WithOpenApi();
 
-app.MapPost("webhook", ([FromBody] Message msg) =>
+app.MapPost("/webhook", ([FromBody] Message msg) =>
 {
     Console.WriteLine("Received message: " + JsonSerializer.Serialize(msg));
 })
