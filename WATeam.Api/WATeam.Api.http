@@ -1,0 +1,6 @@
+@WATeam.Api_HostAddress = http://localhost:5283
+
+GET {{WATeam.Api_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
