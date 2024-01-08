@@ -18,7 +18,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+// app.UseHttpsRedirection();
+app.MapGet("/", () => "Hello World!");
 
 app.MapGet("webhook/verify", (
     [FromQuery(Name = "hub.mode")] string hubMode,
