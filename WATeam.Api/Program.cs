@@ -26,12 +26,13 @@ app.MapGet("/webhook", (
     [FromQuery(Name = "hub.challenge")] int hubChallenge,
     [FromQuery(Name = "hub.verify_token")] string hubVerifyToken) =>
 {
+    Console.WriteLine("Received webhook verification request " + $"(hub.mode={hubMode}, hub.challenge={hubChallenge}, hub.verify_token={hubVerifyToken})");
     return Results.Ok(hubChallenge);
 })
 .WithName("WebhookVerify")
 .WithOpenApi();
 
-app.MapPost("/webhook", ([FromBody] Message msg) =>
+app.MapPost("/webhook", ([FromBody] dynamic msg) =>
 {
     Console.WriteLine("Received message: " + JsonSerializer.Serialize(msg));
 })
